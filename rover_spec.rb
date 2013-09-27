@@ -1,5 +1,6 @@
 require 'rspec'
 require_relative 'rover'
+require_relative 'grid'
 
 describe "Mars Rover" do
 
@@ -138,6 +139,40 @@ describe "Mars Rover" do
 			rover.goto('FLBRRBBBLF')
 
 			rover.print.should eql '7, 1, S'
+		end
+	end
+
+	describe "Grid limits" do
+
+		let(:grid){Grid.new 100, 100}
+
+		it "si esta en el limite derecho y mirando al este y recibe un F aparece por el oeste" do
+			rover = Rover.new(100, 10, 'E', grid)
+
+			rover.move('F')
+
+			rover.print.should eql '0, 10, E'
+		end
+		it "si esta en el limite izquierdo y mirando al oeste y recibe un F aparece por el este" do
+			rover = Rover.new(0, 10, 'W', grid)
+
+			rover.move('F')
+
+			rover.print.should eql '100, 10, W'
+		end
+		it "si esta en el limite inferior y mirando al sur y recibe un F aparece por el norte" do
+			rover = Rover.new(10, 0, 'S', grid)
+
+			rover.move('F')
+
+			rover.print.should eql '10, 100, S'
+		end
+		it "si esta en el limite superior y mirando al norte y recibe un F aparece por el sur" do
+			rover = Rover.new(10, 100, 'N', grid)
+
+			rover.move('F')
+
+			rover.print.should eql '10, 0, N'
 		end
 	end
 

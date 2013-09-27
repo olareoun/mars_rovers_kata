@@ -1,25 +1,28 @@
+require_relative 'unlimited_grid'
+
 class Point
 
-	def initialize(x, y)
+	def initialize(x, y, grid = nil)
 		@x = x
 		@y = y
+		@grid = grid || UnlimitedGrid.new
 	end
 
 	def incX
-		@x = @x + 1
+		@x = @grid.wrapRightLimit @x + 1
 	end
 
 	def decX
-		@x = @x - 1
+		@x = @grid.wrapLeftLimit @x - 1
 	end
 
 	def incY
-		@y = @y + 1
+		@y = @grid.wrapUpperLimit @y + 1
 	end
 
 	def decY
-		@y = @y - 1
-	end		
+		@y = @grid.wrapBottomLimit @y - 1
+	end
 
 	def print
 		@x.to_s + ', ' + @y.to_s

@@ -4,8 +4,8 @@ require_relative 'point'
 
 class Rover
 
-	def initialize(x, y, orientation)
-		@point = Point.new x, y
+	def initialize(x, y, orientation, grid = nil)
+		@point = Point.new x, y, grid
 		@orientation = Orientation.new orientation
 	end
 
