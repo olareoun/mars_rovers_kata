@@ -132,6 +132,13 @@ describe "Mars Rover" do
 			rover.print.start_with?('2, 2').should be_true
 			rover.print.should eql '2, 2, E'
 		end
+		it "if starting in '5, 3, S' and receives 'FLBRRBBBLF' then ends in '7, 1, S'" do
+			rover = Rover.new(5, 3, 'S')
+
+			rover.goto('FLBRRBBBLF')
+
+			rover.print.should eql '7, 1, S'
+		end
 	end
 
 end
