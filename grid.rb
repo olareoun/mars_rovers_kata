@@ -5,36 +5,26 @@ class Grid
 		@topLimit = topLimit
 	end
 
-	def sideLimit
-		@sideLimit
-	end
-
-	def topLimit
-		@topLimit
-	end
-
 	def wrapUpperLimit(coordinate)
-		return moduleWithTopLimit(coordinate) - 1
-		coordinate
+		moduleWithTopLimit(coordinate) - 1
 	end
 
 	def wrapBottomLimit(coordinate)
-		return moduleWithTopLimit(coordinate) + 1
-		coordinate
-	end
-
-	def moduleWithTopLimit(coordinate)
-		coordinate % @topLimit
+		moduleWithTopLimit(coordinate) + 1
 	end
 
 	def wrapRightLimit(coordinate)
-		return moduleWithSideLimit(coordinate) - 1
-		coordinate
+		moduleWithSideLimit(coordinate) - 1
 	end
 
 	def wrapLeftLimit(coordinate)
-		return moduleWithSideLimit(coordinate) + 1
-		coordinate
+		moduleWithSideLimit(coordinate) + 1
+	end
+
+	private
+
+	def moduleWithTopLimit(coordinate)
+		coordinate % @topLimit
 	end
 
 	def moduleWithSideLimit(coordinate)
